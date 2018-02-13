@@ -1,0 +1,35 @@
+f = open("show_version.txt") - reading file, default mode - read
+
+output = f.read()
+print (output) - one big string
+
+f.read() - next time I am in the end of the file so I need to ->
+f.seek(0) - go to the beggining of the file
+
+f.close() - closing file
+
+
+f = open("show_version.txt")
+f.readline() - reading file line by line
+
+f.readlines() - reading the whole file to list based on \n - it retains "\n"
+
+
+Context Manager
+
+with open("show_version.txt") as f:
+    output = f.read()
+-> python manually closes file
+
+
+
+LISTS
+my_list = []
+my_list.append("Hello")
+
+my_list.extend([2,72]) - will modify original list
+
+my_list.pop() - remove very last element
+my_list.pop(0) - remove very beggining element
+
+del my_list[0] - delete very first element
