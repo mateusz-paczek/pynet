@@ -1,0 +1,67 @@
+FOR LOOPS
+ip_address_list = ['10.1.1.1', '192.168.1.1', '172.16.1.1']
+
+for ip in ip_address_list:
+    print (ip)
+
+ENUMERATE
+for my_var in enumerate(ip_address_list):
+    print (my_var)
+    --you can a tuple
+(0, '10.1.1.1')
+(1, '192.168.1.1')
+(2, '172.16.1.1')
+
+for i, ip_address in enumerate(ip_address_list):
+    print (i)
+    print (ip_address)
+    print ('-' * 60)
+
+
+BREAK AND CONTINUE
+
+for ip in ip_address_list:
+    print (ip)
+    if ip == '10.1.1.1':
+        break --> ends loop
+
+for ip in ip_address_list:
+    print ("hello")
+    if ip == "192.168.1.1":
+        continue
+    print (ip)
+
+RANGE
+list(range (10))
+
+for my_var in range(10):
+    print my_var
+
+WHILE LOOPS
+f = open ("show_version.txt")
+
+i = 0
+while i <= 5:
+    line = f.readline()
+    line = line.strip()
+    print (line)
+    i += 1
+
+
+some_list = ['8.8.8.8', '8.8.4.4', '192.168.1.1']
+
+for ip in some_list:
+    print (ip)
+    if ip == '8.8.8.8':
+        break
+else:
+    print ("Hit the else clause") -> else will be executed when break will not be executed
+
+while True:
+    print ("hello")
+    print ("world")
+    if google_dns1 == '8.8.8.8':
+        break
+
+
+
