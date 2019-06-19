@@ -1,3 +1,39 @@
+IF STATEMENT
+if expression:
+	block
+	block
+elif expresion:
+  	block
+	block
+elif expression:
+	block
+	block
+else:
+	block
+	block
+
+-----------------------------------
+var1 = True
+if var1:
+	print ("Hello world")
+
+
+var1 = 10
+if var1 == 10:
+	print ("hello")
+else:
+	print ("Else happened")
+
+
+
+
+BOOLEANS
+Ternary operator: 
+my_val = 10
+a = 'whatever if my_val > 2 else 'something'
+
+
+
 FOR LOOPS
 ip_address_list = ['10.1.1.1', '192.168.1.1', '172.16.1.1']
 
@@ -7,10 +43,13 @@ for ip in ip_address_list:
 ENUMERATE
 for my_var in enumerate(ip_address_list):
     print (my_var)
-    --you can a tuple
+    --it gives you back a tuple - index and value
 (0, '10.1.1.1')
 (1, '192.168.1.1')
 (2, '172.16.1.1')
+
+var1,var2 = my_var => var1 is assigned with '2', var2 is assigned to 172.16.1.1
+
 
 for i, ip_address in enumerate(ip_address_list):
     print (i)
@@ -28,7 +67,7 @@ for ip in ip_address_list:
 for ip in ip_address_list:
     print ("hello")
     if ip == "192.168.1.1":
-        continue
+        continue -> we immedietely jump back into neareast loop and continue onward
     print (ip)
 
 RANGE

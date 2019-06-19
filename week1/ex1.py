@@ -7,7 +7,7 @@ ip_addr2 = '10.1.1.1'
 ip_addr3 = '172.16.30.1'
 
 # Default printing for Python3
-print("{:20}{:20}{:20}".format(ip_addr1, ip_addr2, ip_addr3))
+print("{:^20}{:^20}{:^20}".format(ip_addr1, ip_addr2, ip_addr3))
 
 print ("\n")
 
@@ -16,4 +16,4 @@ print ("%s %s %s" % (ip_addr1, ip_addr2, ip_addr3))
 
 # printing using "f" string
 
-print (f"{ip_addr1:20}{ip_addr2:20}{ip_addr3:20}")
+print (f"{ip_addr1:^20}{ip_addr2:^20}{ip_addr3:^20}")

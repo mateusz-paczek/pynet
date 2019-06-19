@@ -12,7 +12,7 @@ f.close() - closing file
 f = open("show_version.txt")
 f.readline() - reading file line by line
 
-f.readlines() - reading the whole file to list based on \n - it retains "\n"
+f.readlines() - reading the whole file to list based on \n - it retains "\n" - List is created
 
 
 Context Manager
@@ -25,7 +25,7 @@ with open("show_version.txt") as f:
 
 LISTS
 my_list = []
-my_list.append("Hello")
+my_list.append("Hello") - we append "Hello" to the end of the list
 
 my_list.extend([2,72]) - will modify original list
 
@@ -33,3 +33,51 @@ my_list.pop() - remove very last element
 my_list.pop(0) - remove very beggining element
 
 del my_list[0] - delete very first element
+
+LIST SLICES
+list[0:5] - give me elements from 0 to element 4 (element 5 is not included)
+
+List and Dict are mutable - you can append to list but it still shows the same ID (id(list))
+
+
+
+TUPLES
+Lists that you can modify
+my_tuple = (2,'whatever', 22.0)
+my_tuple[0] - access first element
+You can not modify tuple
+
+my_tuple[0] = 'hello' - THIS WILL NOT WORK
+
+
+USING .JOIN
+":".join(words)
+
+
+SYS.ARGV
+
+
+LINTERS
+sth that check you code quality for convention
+pylint or pycodestyle
+
+pylint test1.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
