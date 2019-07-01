@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 '''
 1. Create a dictionary representing a network device. The dictionary should have key-value pairs representing the 'ip_addr', 'vendor', 'username', and 'password' fields.
 
@@ -16,45 +15,40 @@ Using a for-loop, iterate over the dictionary and print out all of the dictionar
 Using a single for-loop, iterate over the dictionary and print out all of the dictionary keys and values.
 '''
 
-
-#creating network device dictionary
-
-network_device = {"ip_addr":"10.1.1.1", "vendor": "cisco", "username":"admin", "password":"admin123"}
-
-#print ip_addr key from the dictionary
-print(network_device['ip_addr'])
-
-#check if 'vendor' key is 'cisco' or 'juniper' and then update dictinary with 'platform' key
-if network_device['vendor'] == 'cisco':
-    network_device.update(platform = 'ios')
-elif network_device['vendor'] == 'juniper':
-    network_device.update(platform = 'junos')
-
-
-#creating bgp_fields dictionary
-
-bgp_fields = {
-    'bgp_as': 42,
-    'peer_as': 100,
-    'peer_ip': '172.16.31.100',
+# Create dict representing a network device
+net_device = {
+	"ip_addr": '10.1.1.1',
+	"vendor": "cisco",
+	"username": "admin",
+	"password": "cisco123"
 }
 
-print (bgp_fields)
+# Print out the "ip_addr" key from the dictionary
+#print (net_device["ip_addr"])
+print (f"IP Address is: {net_device['ip_addr']}")
+print()
 
-#add all bgp_fields key-value pairs to network_device dictionary
-network_device.update(bgp_fields)
-#print updated network_device dictionary
-print(network_device)
+# If the "vendor" key is "cisco" set "platform" to "ios", if the "vendor" key is "juniper" set "platform" to "junos"
+if net_device["vendor"].lower() == "cisco":
+	net_device["platform"] = "ios"
+elif net_device["vendor"].lower() == "juniper":
+	net_device["platform"] = "junos"
 
-#print all keys of network_device dictionary
 
-print('---' * 30)
-print("Loop through all dictionary keys \n")
+# Create a second dictionary named 'bgp_fields'. The 'bgp_fields' dictionary should have a keys for 'bgp_as', 'peer_as', and 'peer_ip'.
+bgp_fields = {
+	"bgp_as": "100",
+	"peer_as": "200",
+	"peer_ip": "10.1.1.2"
+}
 
-for key in network_device:
-    print(key)
+# Create a second dictionary named 'bgp_fields'. The 'bgp_fields' dictionary should have a keys for 'bgp_as', 'peer_as', and 'peer_ip'.
+net_device.update(bgp_fields)
 
-#print all key-values using single loop
+# Using a for-loop, iterate over the dictionary and print out all of the dictionary keys.
+for key in net_device:
+	print(f"The key is: {key}")
 
-for k,v in network_device.items():
-    print("{key:>15} ----> {value:>15}".format(key=k,value=v))
+# Using a single for-loop, iterate over the dictionary and print out all of the dictionary keys and values.
+for key,value in net_device.items():
+	print (f"For KEY {key} VALUE is: {value}")

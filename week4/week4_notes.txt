@@ -1,0 +1,116 @@
+DICTIONARY
+Mapping between Key and Value
+net_device = {}
+net_device['ip_addr'] = '192.168.1.1'
+
+var1='vendor'
+net_device[var1] = 'cisco'
+net_device['device_type'] = 'IOS'
+
+accessing the key: net_device['vendor'] 
+
+DICTIONARIES METHODS
+net_device,get('model') - if the key lookup failes in returns default value. Default Value = None
+
+net_device2 = net_device.copy() - copy of net_device
+net_device2 is not equal to net_device
+
+net_device.pop('model') - remove key model from dictionary
+net_device.update(net_device2) - update any key/value in first dictionary with key/values in 2nd dictionaries
+
+for key in net_device: -> gives you keys
+for val in net_devices.value() -> give you corresponding values
+for key,value in net_devices.items() -> gives you key and value, similar to ENUMERATE
+
+
+SETS
+unordered not duplicated elements
+
+my_ips = ['192.168.1.1', '1.1.1.1', '2.2.2.2', '192.168.1.1']
+
+set(my_ips) => {192.168.1.1, '2.2.2.2', '1.1.1.1'}
+
+
+
+####################################################################################################
+EXCEPTIONS
+my_dict={}
+try:
+	print("Statement before")
+	my_dict['ip_addr']  -> there is no such key so there will be exception
+	print("Statement after")
+except KeyError:
+	print("Caught exception")
+
+print ("After exception")
+
+###CATCH and RE-RAISE som exception
+try:
+	my_dict=['ip_addr']
+except KeyError:
+	print("Caught exception, re-raise")
+	raise
+
+
+###Catch exception and retrieve information about it
+try:
+	my_dict['ip_addr']
+except KeyError as e:
+	print(e.___class__)
+	print(str(e))
+	print("Caught exception, printed info")
+
+
+### Catch multiple exceptions
+my_dict={}
+my_list=[]
+try:
+	my_list[0]
+	my_dict['ip_addr']
+except (KeyError, IndexError)
+	print ("Handled multiple potential exceptions")
+
+
+### Add a finally clause
+my_dict={}
+try:
+	my_dict['ip_addr']
+except KeyError:
+	print("IP Address not found")
+finally:
+	print"This is always executed, exception or not")
+
+
+
+#########################################################################################################
+REGEX
+. 	Any single character
++ 	One or more times
+*	Zero or more times
+^ 	Beggining of line
+$	End of line
+\s	Whitespace character class
+\d	Digit character class
+\S	Non-whitespace character class
+[]	Construct your own character class
+()	Paranthesis to save things
+
+
+line = "192.168.1.1"
+re.search(r".", line)
+re.search(r".", line).group(0) -> what exactly did i match -> it returns "1"
+
+re.search(r".+", line).group(0) -> by default its greedy -> it matches "192.168.1.1"
+
+re.search(r".+?", line).group(0) -> non greedy mode with ? 
+
+
+re.search(r"^Cisco.*, Version (?P<serial_num>\S+),.*$",line).groupdict() -> creates dictionary with key: serial_num, value
+re.search(r"^Processor board ID (.*), output, flag=re.M) - it checks line by line
+
+by default .* match every character but not new line \n, to change this you need to set flags=re.DOTALL
+
+re.split(r"^----------.*$, output, flags=re.M) - creates list based on pattern specified
+re.sub(r"^-------.*$, '#####WHATEVER######', output, flags=re.M)
+
+re.findall - searching for a known not default value that is used many times in your output
