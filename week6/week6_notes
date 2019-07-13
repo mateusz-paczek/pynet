@@ -1,0 +1,45 @@
+ Netmiko command prompting
+
+from netmiko import Netmiko
+from getpass import getpass
+
+my_device = {
+	"host" = "cisco1.local.com"
+	"username" = "admin"
+	"password" = getpass()
+	"device_type" = "cisco_ios"
+}
+
+net_connect = Netmiko(**my_device)
+
+filename = "cisco_log1.txt"
+cmd = "delete flash {}".format(filename)
+output = net_connect.send_command_timing(cmd)
+
+if "confirm" in output:
+	output += net_connect.send_command_timing("\n")
+
+print(output) 
+
+net_connect.disconnect()
+
+When we want to add delay:
+output = net_connect.send_command("copy run start", delay_factor=2) - delay factor is multiplier
+
+
+NETMIKO and TEXTFSM
+output = net_connect.send_command("show ip arp", use_textfsm=True)
+
+
+NETMIKO Config Changes
+cfg_commands = ['logging buffered 500', 'logging console']
+output = net_connect.send_config_set(cfg_commands)
+net_connect.send_config_from_file("change_file.txt") - run commands specified in "change_file.txt"
+
+
+TRPIBLESHOOTING Netmiko
+Enable netmiko login
+import logging
+logging.basicConfig(filename="test.log", level=logging.DEBUG)
+logger = logging.getLogger("netmiko")
+
