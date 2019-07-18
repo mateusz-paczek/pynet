@@ -1,0 +1,133 @@
+JINJA2
+
+NO VARIABLES
+import jinja2
+
+bgp_vars = {}
+bgp_template = '''
+	feature bgp
+	router bgp 10
+	  address-family ipv4 unicast
+	    network 10.10.200.0/24
+            network 10.10.201.0/24
+	    network 10.10.202.0/24
+          neighbor 10.255.255.2 remote-as 20
+            update-source loopback1
+            ebgp-multihop 2
+            address-family ipv4 unicast
+'''
+
+t = jinja2.Template(bgp_template)
+print(t.render(bgp_vars))
+
+WITH VARIABLES
+import jinja2
+bgp_vars = {
+	"peer1_ip": "10.255.255.2",
+	"peer1_as": "20",
+}
+
+bgp_template = '''
+         feature bgp
+         router bgp 10
+           address-family ipv4 unicast
+             network 10.10.200.0/24
+             network 10.10.201.0/24
+             network 10.10.202.0/24
+           neighbor {{ peer1_ip }} remote-as {{ peer1_as }}
+	     update-source loopback1
+ 	     ebgp-multihop 2
+             address-family ipv4 unicast
+'''
+
+
+JINJA2 FOR-LOOPS and CONDITIONALS
+Inside Python script
+advertised_routes = ["10.10.200.0/24", "10.10.201.0/24","10.10.202.0/24"]
+bgp_vars = {
+	"local_as": 10,
+	"peer1_ip": "10.255.255.2",
+	"remote_as": 20,
+	"advertised_routes"=advertised_routes,
+	"peer1_ipv6": True,
+}
+
+Jinja2 file template
+feature bgp
+router bgp {{ local_as }}
+	address-family ipv4 unicast
+		{%- for route in advertised_routes %}         # %- -> there will be no new lines in generated output
+        	network {{ route }}
+        	{%- endfor %}
+	neighbor {{ peer1_ip }} remote-as {{ peer1_as }}
+		update-source loopback1
+		ebgp multihop 2
+		address-family ipv4 unicast
+		{% if peer1_ipv6 -%}
+		address-family ipv6 unicast
+		{% endif %}
+
+
+JINJA2 and CSV
+
+
+YAML BASICS
+my_devices.yml
+
+---
+- 10.1.1.1
+- 10.1.1.2
+- 10.1.1.3
+- 192.168.1.1
+
+#above we have 4 list elements,
+
+import yaml
+filename="my_devices.yml"
+with open(filename) as f:
+	output=yaml.load(f) 
+
+print(output)
+
+We dont need to quote strings in YAML
+
+Create dictionary in YAML
+---
+rtr1: 192.168.1.1
+rtr2: 192.1.1.2
+
+
+YAML Part2
+Booleans in YAML
+rtr1: True
+rtr2: on
+rtr3: yes
+rtr4: False
+rtr5: off
+rtr: no
+
+
+---
+rtr1: 
+   ip_addr: 10.1.1.1
+   username: admin
+   password: admin123
+   device_type: juniper_junos
+   bgp_peers:
+     - 10.100.1.1
+     - 10.100.1.2
+     - 10.100.1.3
+     - 10.100.1.4
+
+rtr2:
+   ip_addr: 10.1.1.2
+   username: admin
+   password: admin123
+   device_type: cisco_ios
+   bgp_peers: [192.168.1.1, 2.2.2.2]
+
+
+
+USING PYTHON TO WRITE YAML
+
+
